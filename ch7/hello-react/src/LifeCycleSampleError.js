@@ -1,7 +1,7 @@
 import { Component } from "react";
 
 // 각 lifecycle을 실행할 때마다 콘솔 디버거에 기록하고, 부모 컴포넌트에서 props로 색상을 받아 버튼을 누르면 state.number 값을 1씩 더함
-class LifeCycleSample extends Component {
+class LifeCycleSampleError extends Component {
   state = {
     number: 0,
     color: null,
@@ -87,6 +87,8 @@ class LifeCycleSample extends Component {
 
     return (
       <div>
+        {this.props.missing.value}
+        {/* 존재하지 않는 props인 missing 객체의 value를 조회해서 렌더링하려고 함 -> 당연히 브라우저에서 에러 발생*/}
         <h1 style={style} ref={(ref) => (this.myRef = ref)}>
           {/* 부모 컴포넌트에서 props로 색상을 받음*/}
           {this.state.number}
@@ -98,4 +100,4 @@ class LifeCycleSample extends Component {
   }
 }
 
-export default LifeCycleSample;
+export default LifeCycleSampleError;
