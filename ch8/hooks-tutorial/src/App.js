@@ -1,4 +1,4 @@
-// import Counter from "./Counter";
+import Counter from "./Counter";
 // import Info from "./Info";
 // import { useState } from "react";
 // import InfoUseEffect from "./InfoUseEffect";
@@ -6,10 +6,10 @@
 // import InfoUseReducer from "./InfoUseReducer";
 // import Average from "./Average";
 // import AverageUseRef from "./AverageUseRef";
-import InfouseInputs from "./InfouseInputs";
+// import InfouseInputs from "./InfouseInputs";
 
 const App = () => {
-  // return <Counter />;
+  return <Counter />;
   // return <Info />;
   // return <InfoUseEffect />;
 
@@ -35,7 +35,7 @@ const App = () => {
   // return <AverageUseCallback />;
   // return <AverageUseRef />;
 
-  return <InfouseInputs />;
+  // return <InfouseInputs />;
 };
 
 export default App;
