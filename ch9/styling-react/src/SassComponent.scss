@@ -1,4 +1,4 @@
-@import './styles/utils'; // scss 파일 불러오기
+// @import './styles/utils'; // scss 파일 불러오기 -> 자동으로 불러오기로 설정 변경
 
 // 아래의 주석은 2-1 sass 사용 예시
 // // 변수 사용하기
@@ -19,6 +19,10 @@
 
 .SassComponent {
     display: flex;
+    background-color: $oc-gray-2; // SassComponent의 배경색을 open-colors 팔레트 라이브러리에서 불러온 후 설정
+    @include media('<768px') { // 화면 가로 크기가 768px 미만이 되면 배경색을 어둡게 바꿔줌
+        background: $oc-gray-9;
+    }
     .box { // 일반 CSS 에서는 .SassComponent .box와 마찬가지
         background: red;
         cursor: pointer;
