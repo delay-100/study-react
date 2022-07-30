@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+// import ColorBox from "./components/ColorBox";
+// import ColorContext from "./contexts/color";
 
-function App() {
+import DynamicColorBox from "./components/DynamicColorBox";
+import { ColorProvider } from "./contexts/dynamiccolor";
+import SelectColors from "./components/SelectColors";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ColorProvider>
+      <div>
+        <SelectColors />
+        <DynamicColorBox />
+      </div>
+    </ColorProvider>
+    // // 2-1 Context API 기본 사용 예제
+    // <ColorContext.Provider value={{ color: "red" }}>
+    //   {/*Provider 사용 시 Context의 value를 바꿀 수 있음. Provider을 사용한다면 value를 꼭 넣어줘야 함 -> 미기재시 에러 */}
+    //   <div>
+    //     <ColorBox />
+    //   </div>
+    // </ColorContext.Provider>
   );
-}
+};
 
 export default App;
