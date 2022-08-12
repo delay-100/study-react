@@ -93,10 +93,15 @@ const todos = handleActions(
     //     todo.id === action.payload ? { ...todo, done: !todo.done } : todo,
     //   ),
     // }),
-    [REMOVE]: (state, { payload: id }) => ({
-      ...state,
-      todos: state.todos.filter((todo) => todo.id !== id),
-    }),
+    [REMOVE]: (state, { payload: id }) =>
+      produce(state, (draft) => {
+        const index = draft.todos.findIndex((todo) => todo.id === id);
+        draft.todos.splice(index, 1); // splice() 메서드는 배열의 기존 요소를 삭제 또는 교체하거나 새 요소를 추가하여 배열의 내용을 변경
+      }),
+    // [REMOVE]: (state, { payload: id }) => ({
+    //   ...state,
+    //   todos: state.todos.filter((todo) => todo.id !== id),
+    // }),
     // [REMOVE]: (state, action) => ({
     //   ...state,
     //   todos: state.todos.filter((todo) => todo.id !== action.payload),
