@@ -41,3 +41,6 @@ const TodosContainerHooks = () => {
 
 // export default TodosContainerHooks;
 export default React.memo(TodosContainerHooks);
+// useSelector 이용 시 최적화 작업이 자동으로 이루어지지 않아 성능 최적화를 위해 React.memo를 컨테이너 컴포넌트에 사용해줘야 함
+// 반면, connect 함수: 해당 컨테이너 컴포넌트의 부모 컴포넌트가 리렌더링될 때 해당 컨테이너 컴포넌트의 props가 바뀌지 않았다면 리렌더링이 자동으로 방지되어 성능이 최적화됨
+// 지금 프로젝트에서는 TodosContainerHooks의 부모 컴포넌트인 App 컴포넌트가 리렌더링되는 일이 없으므로 불필요한 성능 최적화임
