@@ -2,7 +2,7 @@
 // createRequestThunk.js는 반복되는 로직을 따로 분리하여 코드의 양을 줄입니다. - 유틸 함수 생성(API 요청을 해주는 thunk 함수(src/modules/sample.js)를 한 줄로 생성할 수 있게 해줌)
 
 // modules/loading.js에서 loading 리덕스 모듈에서 만든 액션 생성 함수는 앞에서 만든 createRequestThunk에서 사용해 줌
-import { startLoading, finishLoading } from "../modules/loding";
+import { startLoading, finishLoading } from "../modules/loading";
 
 export default function createRequestThunk(type, request) {
   // 성공 및 실패 액션 타입을 정의합니다.
