@@ -10,6 +10,8 @@ import mongoose from 'mongoose'
 
 import api from './api'
 
+// const api = require('./api')
+
 const { PORT, MONGO_URI } = process.env
 
 mongoose
@@ -20,8 +22,6 @@ mongoose
   .catch((e) => {
     console.error(e)
   })
-
-const api = require('./api')
 
 const app = new Koa()
 const router = new Router()
