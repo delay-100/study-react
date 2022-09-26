@@ -9,7 +9,8 @@ import bodyParser from 'koa-bodyparser'
 import mongoose from 'mongoose'
 
 import api from './api'
-import createFakeData from './createFakeData'
+import jwtMiddleware from './lib/jwtMiddleware'
+// import createFakeData from './createFakeData'
 
 // const api = require('./api')
 
@@ -30,7 +31,9 @@ const router = new Router()
 
 router.use('/api', api.routes())
 
+// 라우터 전에 bodyparser 적용
 app.use(bodyParser())
+app.use(jwtMiddleware)
 
 router.get('/', (ctx) => {
   ctx.body = '홈'

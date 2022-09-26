@@ -1,5 +1,6 @@
 import mongoose, { Schema } from 'mongoose'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 const UserSchema = new Schema({
   username: String,
@@ -22,6 +23,20 @@ UserSchema.methods.checkPassword = async function (password) {
   return result // true, false
 }
 
+UserSchema.methods.generateToken = function () {
+  const token = jwt.sign(
+    // 첫 번쨰 파라미터: 토큰 안에 넣을 데이터
+    {
+      _id: this.id,
+      username: this.username,
+    },
+    process.env.JWT_SECRET, // 두 번쨰 파라미터: JWT 암호
+    {
+      expiresIn: '7d', // 7일동안 유효
+    },
+  )
+  return token
+}
 UserSchema.statics.findByUsername = function (username) {
   // this는 모델, statics는 User을 가리킴
   return this.findOne({ username })
