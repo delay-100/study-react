@@ -1,21 +1,23 @@
 import Router from 'koa-router'
 import * as postsCtrl from './posts.ctrl'
-
+import checkLoggedIn from '../../lib/checkLoggedIn'
 const posts = new Router()
 
 posts.get('/', postsCtrl.list)
-posts.post('/', postsCtrl.write)
+posts.post('/', checkLoggedIn, postsCtrl.write)
+
 posts.get('/:id', postsCtrl.checkObjectId, postsCtrl.read)
-posts.delete('/id', postsCtrl.checkObjectId, postsCtrl.remove)
-posts.patch('/:id', postsCtrl.checkObjectId, postsCtrl.update)
+posts.delete('/:id', checkLoggedIn, postsCtrl.checkObjectId, postsCtrl.remove)
+posts.patch('/:id', checkLoggedIn, postsCtrl.checkObjectId, postsCtrl.update)
 
 // 라우터 분리하기
-// const post = new Router()
+const post = new Router() // /api/posts/:id
 
-// post.get('/', postsCtrl.checkObjectId, postsCtrl.read)
-// post.delete('/', postsCtrl.checkObjectId, postsCtrl.remove)
-// post.patch('/', postsCtrl.checkObjectId, postsCtrl.update)
+post.get('/', postsCtrl.checkObjectId, postsCtrl.read)
+post.delete('/', checkLoggedIn, postsCtrl.checkOwnPost, postsCtrl.remove)
+post.patch('/', checkLoggedIn, postsCtrl.checkOwnPost, postsCtrl.update)
 
+posts.use('/:id', postsCtrl.getPostById, post.routes())
 // posts.use('/:id', postsCtrl.checkObjectId, post.routes())
 
 // -----------
