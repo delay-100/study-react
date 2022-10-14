@@ -1,5 +1,6 @@
 import styled, {css} from 'styled-components'
-import { withRouter } from 'react-router-dom'
+
+import { useNavigate } from 'react-router-dom'
 import palette from '../../lib/styles/palette'
 
 const StyledButton = styled.button`
@@ -37,12 +38,12 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = ({to, history, ...rest}) =>{
+const Button = ({to,  ...rest}) =>{
+  const navigate = useNavigate()
   const onClick = e=> {
     // to가 있다면 to로 페이지 이동
     if(to) {
-      history.push(to)
-      // navigate(to)
+      navigate(to)
     }
     if(rest.onClick){
       rest.onClick(e)
@@ -51,4 +52,4 @@ const Button = ({to, history, ...rest}) =>{
   return <StyledButton {...rest} onClick={onClick}/>
 }
 
-export default withRouter(Button)
+export default Button
