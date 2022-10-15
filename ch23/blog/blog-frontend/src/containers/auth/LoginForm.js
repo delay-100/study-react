@@ -55,6 +55,12 @@ const LoginForm = () => {
     useEffect(() => {
         if(user) {
             navigate('/')
+            // 회원가입 및 로그인 시 사용자 정보를 localStorage에 저장하도록 작업함
+            try {
+                localStorage.setItem('user', JSON.stringify(user))
+            } catch (e) {
+                console.log('localStorage is not working')
+            }
         }
     }, [navigate, user])
     

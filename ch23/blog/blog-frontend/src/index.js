@@ -9,12 +9,28 @@ import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import createSagaMiddleware from 'redux-saga'
 import rootReducer, {rootSaga} from './modules'
+import { tempSetUser, check } from './modules/user'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagaMiddleware)))
 
+
+function loadUser() {
+  try {
+    const user = localStorage.getItem('user')
+    if (!user) return; // 로그인 상태가 아니라면 아무것도 안 함
+
+    store.dispatch(tempSetUser(JSON.parse(user)))
+    store.dispatch(check())
+  } catch (e) {
+    console.log('localStorage is not working')
+  }
+}
+
+// sagaMiddleware을 실행한 후 loadUser을 실행해야 함! -> loadUser를 먼저 호출하면 CHECK 액션을 디스패치했을 때 사가에서 제대로 처리하지 않음
 sagaMiddleware.run(rootSaga)
+loadUser()
 
 root.render(
   <React.StrictMode>
