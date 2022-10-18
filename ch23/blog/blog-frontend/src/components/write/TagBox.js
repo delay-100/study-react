@@ -38,7 +38,7 @@ const TagForm = styled.form`
         cursor: pointer;
         padding-right: 1rem;
         padding-left: 1rem;
-        /* border: none; */
+        border: none; 
         background: ${palette.gray[8]};
         color: white;
         font-weight: bold;
