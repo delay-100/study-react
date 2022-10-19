@@ -1,3 +1,4 @@
+// 회원인증과 관련한 api 요청
 import client from './client'
 
 // 로그인
