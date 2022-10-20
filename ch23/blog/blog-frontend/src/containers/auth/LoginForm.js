@@ -6,8 +6,8 @@ import { check } from '../../modules/user'
 import { useNavigate } from 'react-router-dom'
 
 const LoginForm = () => {
-    const [error, setError] = useState(null)
     const navigate = useNavigate()
+    const [error, setError] = useState(null)
     const dispatch = useDispatch()
     const { form, auth, authError, user } = useSelector(({auth, user}) => ({
         form: auth.login,
