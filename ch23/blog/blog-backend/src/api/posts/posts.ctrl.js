@@ -44,7 +44,7 @@ export const checkOwnPost = (ctx, next) => {
 export const write = async (ctx) => {
   const schema = Joi.object().keys({
     title: Joi.string().required(),
-    body: Joi.string().required,
+    body: Joi.string().required(),
     tags: Joi.array().items(Joi.string()).required(), // 문자열로 이루어진 배열
   })
 
