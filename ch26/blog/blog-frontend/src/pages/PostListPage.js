@@ -1,6 +1,9 @@
-// import Button from '../components/common/Button' 
+// import Button from '../components/common/Button'
 // import Header from '../components/common/Header'
-import HeaderContainer from "../containers/common/HeaderContainer"
+import HeaderContainer from '../containers/common/HeaderContainer'
+// import PostList from '../components/posts/PostList'
+import PostListContainer from '../containers/posts/PostListContainer'
+import PaginationContainer from '../containers/posts/PaginationContainer'
 
 const PostListPage = () => {
   return (
@@ -8,7 +11,9 @@ const PostListPage = () => {
       {/* <Button>버튼</Button> */}
       {/* <Header/> */}
       <HeaderContainer />
-      <div>안녕하세요</div>
+      {/* <PostList /> */}
+      <PostListContainer />
+      <PaginationContainer />
     </div>
   )
 }
