@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
 import { readPost, unloadPost } from '../../modules/post'
 import { setOriginalPost } from '../../modules/write'
+import { removePost } from '../../lib/api/posts'
 import PostViewer from '../../components/post/PostViewer'
 import PostActionButtons from '../../components/post/PostActionButtons'
 
@@ -32,6 +33,14 @@ const PostViewerContainer = () => {
     navigate('/write')
   }
 
+  const onRemove = async () => {
+    try {
+      await removePost(postId)
+      navigate('/') // 홈으로 이동
+    } catch (e) {
+      console.log(e)
+    }
+  }
   // 자신의 포스트인 경우만 나타나게 함
   const ownPost = (user && user._id) === (post && post.user._id)
   return (
@@ -39,7 +48,9 @@ const PostViewerContainer = () => {
       post={post}
       loading={loading}
       error={error}
-      actionButtons={ownPost && <PostActionButtons onEdit={onEdit} />}
+      actionButtons={
+        ownPost && <PostActionButtons onEdit={onEdit} onRemove={onRemove} />
+      }
     />
   )
 }
