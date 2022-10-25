@@ -198,7 +198,7 @@ export const update = async (ctx) => {
     return
   }
 
-  const nextData = { ...ctx.reuest.body } //객체를 복사하고
+  const nextData = { ...ctx.request.body } //객체를 복사하고
   // body 값이 주어졌으면 HTML필터링
   if (nextData.body) {
     nextData.body = sanitizeHtml(nextData.body, sanitizeOption)
